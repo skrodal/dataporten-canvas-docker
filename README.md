@@ -2,6 +2,8 @@
 
 Canvas user registration/login with Dataporten, utilising the OmniAuth Strategy for Dataporten (https://github.com/UNINETT/omniauth-dataporten).
 
+This recipe has been tested step-by-step and found to be working beautifully.
+
 With the following 'plugin', users may register/log in to Canvas with Dataporten:
 
 - Canvas User ID === Dataporten `userid`
@@ -12,6 +14,7 @@ An account will be created automatically if it does not already exist.
 
 ** Register your client with Dataporten: **
 
+- Set Redirect URI: `/auth/dataporten/callback` e.g. if on localhost on port 3000, then `http://127.0.0.1:3000/auth/dataporten/callback`
 - Make note of your `CLIENT_ID` and `CLIENT_SECRET`
 - Request scopes `userid`, `email` and `profile`
 
@@ -49,7 +52,6 @@ Paste the following lines inside `CanvasRails::Application.routes.draw do`:
 Copy to Gemfile.d/omniauth_dataporten.rb
 
 ```ruby
-gem 'omniauth'
 gem 'omniauth-dataporten'
 ```
 
@@ -67,7 +69,7 @@ Stop running instance:
 
 > \# ps aux | egrep -i 'rails[^a-zA-Z]' | awk '{print $2}' | xargs kill
 
-Start server: 
+Start server (non-detached so you can observe server output in terminal): 
 
 > \# bundle exec rails server
 
@@ -84,6 +86,24 @@ a) With Dataporten:
 b) With Canvas
 
 > http://127.0.0.1:3000/login/canvas/
+
+## 5. Flow
+
+On first login with Dataporten (e.g. via `http://127.0.0.1:3000/auth/dataporten/`), the user is taken to the consent form:
+
+![Preview](/screenshots/dataporten_consent.png)
+
+When accepted, user is redirected to `/auth/dataporten/callback` where the user details are employed to create the account.
+
+Logged in as admin, the new user will appear in the list:
+
+![Preview](/screenshots/canvas_dataporten_user.png)
+
+And further details about the user may be observed by clicking the name:
+
+![Preview](/screenshots/canvas_dataporten_user_details.png)
+
+
 
 # (
 
