@@ -1,0 +1,7 @@
+
+# Add the following lines to `routes.rb` — inside `CanvasRails::Application.routes.draw do`
+
+
+  # ADD CALLBACK ROUTE FOR DATAPORTEN AUTH
+  get '/auth/dataporten/callback' => 'dataporten#create'
+  resources :dataporten, :only => [:create]
