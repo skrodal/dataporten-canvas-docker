@@ -64,7 +64,7 @@ Copy to `app/controllers/dataporten_controller.rb`
 
 1. Fetch UNINETT Dataporten SVG icon:
 
-```shell
+```sh
 cd public/images/sso_buttons/
 curl https://github.com/andreassolberg/uninett-bootstrap-theme/blob/master/images/Uninett_pil_rod.svg > sso-dataporten.svg
 ```
@@ -82,7 +82,7 @@ curl https://github.com/andreassolberg/uninett-bootstrap-theme/blob/master/image
 
 ## 2. Install
 
-```shell
+```sh
 bundle install
 ```
 
@@ -90,19 +90,19 @@ bundle install
 
 Stop running instance:
 
-```shell
+```sh
 ps aux | egrep -i 'rails[^a-zA-Z]' | awk '{print $2}' | xargs kill
 ```
 
 Start server (non-detached so you can observe server output in terminal): 
 
-```shell
+```sh
 bundle exec rails server
 ```
 
 Stop server again with `CTRL+C`, or
 
-```shell
+```sh
 bundle exec rails server -d
 ``` 
 
@@ -154,19 +154,19 @@ Default admin account for this image:
 
 ### Run the image
 
-```shell
+```sh
 docker run --name canvas -p 3000:3000 -d lbjay/canvas-docker 
 ```
 
 ### Enter the container to make changes
 
-```shell
+```sh
 docker exec -ti canvas env TERM=xterm bash -l
 ```
 
 Nano may be handy for edits:
 
-```shell?line_numbers=false
+```sh
 apt-get install nano
 ```
 
