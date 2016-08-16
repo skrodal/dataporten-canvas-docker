@@ -59,6 +59,21 @@ gem 'omniauth-dataporten'
 
 Copy to `app/controllers/dataporten_controller.rb`
 
+
+### 1.5 (Optional) Add link to Dataporten auth on login page
+
+1. Copy Dataporten svg from/to `public/images/sso_buttons/sso-dataporten.svg`
+2. Edit `app/views/shared/_login_trailer.html.erb` to read something like this:
+
+````
+<div class="login-box" style="text-align: center;">
+	<img alt="UNINETT Dataporten" src="/images/sso_buttons/sso-dataporten.svg" width="15">&nbsp;
+	<%= link_to t("oauth_login", "Logg på med Dataporten"),  "/auth/dataporten/", :id => 'oauth_login' %>
+</div>
+
+````
+
+
 ## 2. Install
 
 > \# bundle install
@@ -74,6 +89,8 @@ Start server (non-detached so you can observe server output in terminal):
 > \# bundle exec rails server
 
 Stop server again with `CTRL+C`
+
+...or `\# bundle exec rails server -d` to run in the background
 
 ## 4. Login to Canvas
 
