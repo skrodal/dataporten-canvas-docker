@@ -62,35 +62,51 @@ Copy to `app/controllers/dataporten_controller.rb`
 
 ### 1.5 (Optional) Add link to Dataporten auth on login page
 
-1. Copy Dataporten svg from/to `public/images/sso_buttons/sso-dataporten.svg`
+1. Fetch UNINETT Dataporten SVG icon:
+
+```shell
+cd public/images/sso_buttons/
+curl https://github.com/andreassolberg/uninett-bootstrap-theme/blob/master/images/Uninett_pil_rod.svg > sso-dataporten.svg
+```
+
 2. Edit `app/views/shared/_login_trailer.html.erb` to read something like this:
 
-````
+```ruby
 <div class="login-box" style="text-align: center;">
 	<img alt="UNINETT Dataporten" src="/images/sso_buttons/sso-dataporten.svg" width="15">&nbsp;
 	<%= link_to t("oauth_login", "Logg på med Dataporten"),  "/auth/dataporten/", :id => 'oauth_login' %>
 </div>
 
-````
+```
 
 
 ## 2. Install
 
-> \# bundle install
+```shell
+bundle install
+```
 
 ## 3. Restart server
 
 Stop running instance:
 
-> \# ps aux | egrep -i 'rails[^a-zA-Z]' | awk '{print $2}' | xargs kill
+```shell
+ps aux | egrep -i 'rails[^a-zA-Z]' | awk '{print $2}' | xargs kill
+```
 
 Start server (non-detached so you can observe server output in terminal): 
 
-> \# bundle exec rails server
+```shell
+bundle exec rails server
+```
 
-Stop server again with `CTRL+C`
+Stop server again with `CTRL+C`, or
 
-...or `\# bundle exec rails server -d` to run in the background
+```shell
+bundle exec rails server -d
+``` 
+
+to run in the background
 
 ## 4. Login to Canvas
 
@@ -98,11 +114,11 @@ Presuming Canvas is running on `http://127.0.0.1:3000/`
 
 a) With Dataporten: 
 
-> http://127.0.0.1:3000/auth/dataporten/
+<http://127.0.0.1:3000/auth/dataporten/>
 
 b) With Canvas
 
-> http://127.0.0.1:3000/login/canvas/
+<http://127.0.0.1:3000/login/canvas/>
 
 ## 5. Flow
 
@@ -138,14 +154,20 @@ Default admin account for this image:
 
 ### Run the image
 
-> docker run --name canvas -p 3000:3000 -d lbjay/canvas-docker 
+```shell
+docker run --name canvas -p 3000:3000 -d lbjay/canvas-docker 
+```
 
 ### Enter the container to make changes
 
-> docker exec -ti canvas env TERM=xterm bash -l
+```shell
+docker exec -ti canvas env TERM=xterm bash -l
+```
 
 Nano may be handy for edits:
 
-> apt-get install nano
+```shell?line_numbers=false
+apt-get install nano
+```
 
 # )
